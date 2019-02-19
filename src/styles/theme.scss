@@ -1,0 +1,148 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+// vytvoření vlastního theme přes http://mcg.mbitson.com/#!?mcgpalette0=%232ecc71
+
+$my-green: (
+  50 : #e6f9ee,
+  100 : #c0f0d4,
+  200 : #97e6b8,
+  300 : #6ddb9c,
+  400 : #4dd486,
+  500 : #2ecc71,
+  600 : #29c769,
+  700 : #23c05e,
+  800 : #1db954,
+  900 : #12ad42,
+  A100 : #deffe7,
+  A200 : #abffc2,
+  A400 : #78ff9c,
+  A700 : #5eff8a,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$my-violet: (
+  50 : #f3ebf6,
+  100 : #e1cde9,
+  200 : #cdacdb,
+  300 : #b98bcc,
+  400 : #aa72c1,
+  500 : #9b59b6,
+  600 : #9351af,
+  700 : #8948a6,
+  800 : #7f3e9e,
+  900 : #6d2e8e,
+  A100 : #f0d4ff,
+  A200 : #dea1ff,
+  A400 : #cb6eff,
+  A700 : #c255ff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$my-red: (
+  50 : #fce8e3,
+  100 : #f8c6ba,
+  200 : #f4a08c,
+  300 : #ef7a5d,
+  400 : #eb5e3b,
+  500 : #e84118,
+  600 : #e53b15,
+  700 : #e23211,
+  800 : #de2a0e,
+  900 : #d81c08,
+  A100 : #ffffff,
+  A200 : #ffd2cf,
+  A400 : #ffa29c,
+  A700 : #ff8a82,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+
+$my-yellow: (
+  50 : #fdf8e2,
+  100 : #fbedb7,
+  200 : #f8e287,
+  300 : #f5d657,
+  400 : #f3cd33,
+  500 : #f1c40f,
+  600 : #efbe0d,
+  700 : #edb60b,
+  800 : #ebaf08,
+  900 : #e7a204,
+  A100 : #ffffff,
+  A200 : #fff3da,
+  A400 : #ffe1a7,
+  A700 : #ffd98e,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #000000,
+    900 : #000000,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+
+
+
+
+
+$my-app-primary: mat-palette($my-yellow);
+$my-app-accent:  mat-palette($my-violet, 500, 900, A100);
+$my-app-warn:    mat-palette($my-red);
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+@include angular-material-theme($my-app-theme);

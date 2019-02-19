@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Create new room</h1>
+<div mat-dialog-content>
+  <p>Room name:</p>
+  <mat-form-field>
+    <form [formGroup]="form">
+      <input matInput formControlName="name">
+    </form>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button cdkFocusInitial (click)="save(form.value)" color="accent">Save</button>
+</div>

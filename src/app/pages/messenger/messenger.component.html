@@ -1,0 +1,9 @@
+<ul *ngIf="messagesArr">
+  <li *ngFor="let message of messagesArr"><b>{{message.from}}: </b>{{message.message}}</li>
+</ul>
+
+<mat-toolbar class="input-toolbar">
+  <button (click)="leaveRoom()" mat-raised-button>Leave room</button>
+      <textarea matInput placeholder="Email" #message></textarea>
+      <button mat-raised-button (click)="sendMessage(message.value)">Send</button>
+</mat-toolbar>

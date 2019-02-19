@@ -1,0 +1,28 @@
+<mat-list *ngIf="showRooms()" class="room-list">
+  <mat-list-item *ngFor="let room of roomsArray" (click)="joinRoom(room)">
+    <div class="online"></div>
+    <div class="offline"></div>
+    {{room.name}}
+  </mat-list-item>
+</mat-list>
+<button mat-raised-button (click)="openDialog()" color="accent">Create a room</button>
+<mat-grid-list cols="4" rowHeight="350px">
+  <mat-grid-tile *ngFor="let room of rooms" colspan="1" rowspan="1" (click)="tileClicked(room)">
+    <mat-card class="dashboard-card">
+      <mat-card-header>
+      <mat-card-title>
+      {{room.name}}
+      </mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="dashboard-card-content">
+      <mat-list>
+      <mat-list *ngFor="let user of room.activeUsers.users">
+      <mat-list-item>
+      {{user.name}}
+      </mat-list-item>
+      </mat-list>
+      </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
