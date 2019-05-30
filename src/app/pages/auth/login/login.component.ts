@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoginService} from './login.service';
 import {Router} from '@angular/router';
 import {AuthService} from '../auth.service';
+import {NotificationsService} from 'angular2-notifications';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService,
     private router: Router,
     private authService: AuthService,
+    private notificationsSvc: NotificationsService
   ) {
     this.form = new FormGroup({
       username: new FormControl(null, [Validators.required]),
@@ -30,12 +32,9 @@ export class LoginComponent implements OnInit {
   get password() { return this.form.get('password'); }
 
   ngOnInit() {
-
   }
 
   onSubmit(input) {
-    console.log(this.form);
-
     if (!this.form.valid) {
       this.username.markAsTouched();
       this.password.markAsTouched();
@@ -45,16 +44,25 @@ export class LoginComponent implements OnInit {
   }
 
   callLoginSvc(input) {
-    this.loginService.logInRequest(input).subscribe((response) => {
-      console.log(response);
+    this.authService.logInRequest(input).subscribe((response) => {
+      this.authService.storeUserData(response.user, response.token);
+      console.log(response.code);
       if (response.code.success) {
-        this.authService.storeUserData(response.user, response.token);
+        this.notificationsSvc.success(response.code.name, response.code.message);
+
         this.router.navigateByUrl('/pages/dash');
+
       } else {
-        console.log('error');
+        this.notificationsSvc.error('Whoops', 'Něco se pokazilo při přihlašování, zkuste to prosím znovu.');
       }
     }, (err) => {
-      console.log(err);
+      this.notificationsSvc.error('Error', err);
+    });
+  }
+
+  checkForUserData() {
+    this.authService.checkUserData().subscribe(user => {
+      console.log(user);
     })
   }
 }

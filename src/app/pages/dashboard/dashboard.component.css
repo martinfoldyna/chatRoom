@@ -4,11 +4,16 @@
 
 .dashboard-card {
   position: absolute;
+  overflow: hidden;
   top: 15px;
   left: 15px;
   right: 15px;
   bottom: 15px;
 }
+
+/*
+* TODO: https://repo.packix.com like design small tiles with action buttons and active users only shown by number not names
+*/
 
 .more-button {
   position: absolute;
@@ -18,4 +23,76 @@
 
 .dashboard-card-content {
   text-align: center;
+}
+
+.user-button:hover {
+  font-weight: 600;
+}
+
+.action-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding-bottom: 15px;
+  cursor: pointer;
+  transition: font-weight .3s;
+}
+
+.action-container button{
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  transition: transform .5s;
+}
+
+.action-container button:hover{
+  transform: scale(1.05, 1.05);
+}
+
+.dashboard-card .icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 15px;
+  color: #fff;
+  font-weight: 700 !important;
+  line-height: 20px;
+  float: right;
+  text-align: center;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.15);
+  transition: .5s opacity;
+}
+
+.dashboard-card .icon:hover {
+  opacity: .6;
+}
+
+mat-card-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.users-list mat-list-item {
+  height: 25px;
+}
+
+.wide-dialog .mat-dialog-container {
+  max-width: 100vw !important;
+}
+
+button.join-button {
+  border-color: inherit;
+}
+
+.mat-h2 {
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+mat-card-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
 }

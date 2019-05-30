@@ -1,0 +1,15 @@
+<mat-toolbar *ngIf="userSvc.getUserInfo()">
+  <h1 routerLink="/pages/dash" class="mat-h1">Chat Room</h1>
+  <div class="menu">
+    <button [matMenuTriggerFor]="menu" class="user-button" mat-button>
+      <span>{{user.username}}</span>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="logOut()">
+        <mat-icon>cancel</mat-icon>
+        <span>Odhlásit se</span>
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>
+

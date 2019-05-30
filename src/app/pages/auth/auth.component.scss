@@ -1,8 +1,6 @@
-@import '~@angular/material/theming';
-@include mat-core();
+
 
 .card-container {
-  background-color: #fff;
   max-width: 520px;
   padding: 10px 0;
   position: absolute;
@@ -17,10 +15,12 @@
   top: 0;
   bottom: 0;
   width: 10%;
-  background-color: #2ecc71;
+  background-color: #49A8EE;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
 }
 
 .login-button {
   color: #fff;
+  width: 80% !important;
+  margin: auto !important;
 }

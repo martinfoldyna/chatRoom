@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material';
-import {CreateRoomDialogComponent} from './createRoomDialog/create-room-dialog.component';
+import {CreateRoomDialogComponent} from '../dialogs/createRoomDialog/create-room-dialog.component';
 import {RoomsService} from './rooms.service';
 import {SocketService} from '../../helpers/services/socket.service';
 import {UserService} from '../../helpers/services/user.service';
 import {Router} from '@angular/router';
 
-export interface DialogData {
-  animal: string;
-  name: string;
-}
 
 @Component({
   selector: 'app-rooms',
@@ -28,10 +24,6 @@ export class RoomsComponent implements OnInit {
     public userSvc: UserService,
     public router: Router
   ) {
-    this.chatSvc.receivedSuccess().subscribe(data => {
-      console.log(data);
-    });
-
     this.chatSvc.receivedMessage().subscribe(data => {
       this.messageArray.push(data);
     });
@@ -89,6 +81,7 @@ export class RoomsComponent implements OnInit {
   tileClicked(room) {
     console.log(room);
     this.roomSvc.joinRoom(room).subscribe(res => {
+      this.chatSvc.joinRoom(room);
       this.chatSvc.joinRoom(room);
       sessionStorage.setItem('currentRoom', JSON.stringify(res.output));
       this.router.navigate(['/pages/chat']);

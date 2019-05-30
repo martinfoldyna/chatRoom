@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>{{room.name}}</h1>
+<div mat-dialog-content>
+  Sezname aktivních uživatelů:
+  <ul>
+    <li *ngFor="let user of room.activeUsers.users">{{user.name}}</li>
+  </ul>
+
+  <p>Vytvořeno: {{room.createdAt | amDateFormat: 'DD.MM.YYYY'}} v {{room.createdAt | amDateFormat: 'HH:mm'}}</p>
+</div>
+<div mat-dialog-actions class="actions">
+  <button mat-raised-button (click)="actionButtonClicked(true)" cdkFocusInitial color="primary">Připojit se</button>
+  <button mat-stroked-button (click)="deleteRoom()" color="warn">Smazat</button>
+  <button mat-raised-button (click)="actionButtonClicked(false)" color="warn">Zavřít</button>
+
+</div>

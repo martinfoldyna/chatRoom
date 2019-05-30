@@ -1,5 +1,6 @@
 @import '~@angular/material/theming';
 @include mat-core();
+@import url('https://fonts.googleapis.com/css?family=Montserrat:700|Roboto:400,700&subset=latin-ext');
 
 // vytvoření vlastního theme přes http://mcg.mbitson.com/#!?mcgpalette0=%232ecc71
 
@@ -141,8 +142,24 @@ $my-yellow: (
 
 
 
-$my-app-primary: mat-palette($my-yellow);
-$my-app-accent:  mat-palette($my-violet, 500, 900, A100);
-$my-app-warn:    mat-palette($my-red);
-$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
-@include angular-material-theme($my-app-theme);
+$my-theme-primary: mat-palette($mat-light-blue, 500, 400);
+$my-theme-accent:  mat-palette($mat-light-green);
+$my-theme-warn:    mat-palette($mat-deep-orange, 600, 500);
+$my-theme: mat-dark-theme(
+  $my-theme-primary,
+  $my-theme-accent,
+  $my-theme-warn
+);
+
+$custom-typography: mat-typography-config(
+  $font-family: 'Roboto'
+);
+@include mat-core($custom-typography);
+@include angular-material-theme($my-theme);
+
+.mat-h1,
+.mat-h2,
+.mat-h3,
+.mat-h4 {
+  font-family: 'Monserrat',sans-serif !important;
+}

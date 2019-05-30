@@ -4,7 +4,7 @@ import {SocketService} from '../helpers/services/socket.service';
 @Component({
   selector: 'app-pages',
   template: `
-    <app-sidenav></app-sidenav>
+    <router-outlet></router-outlet>
   `,
 })
 

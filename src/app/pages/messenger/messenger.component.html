@@ -1,9 +1,28 @@
-<ul *ngIf="messagesArr">
-  <li *ngFor="let message of messagesArr"><b>{{message.from}}: </b>{{message.message}}</li>
-</ul>
+<div class="sideline" *ngIf="room.activeUsers.users">
+  <h4>{{room.name}}</h4>
+  <mat-list>
+    <p>Aktivní uživatelé:</p>
+    <mat-list-item *ngFor="let user of room.activeUsers.users"><div class="online"></div>{{user.name}}</mat-list-item>
+  </mat-list>
+  <button (click)="leaveRoom()" mat-stroked-button color="warn">Opustit místnost</button>
+<!--  <button (click)="deleteRoom()" mat-raised-button>Delete Room</button>-->
 
-<mat-toolbar class="input-toolbar">
-  <button (click)="leaveRoom()" mat-raised-button>Leave room</button>
-      <textarea matInput placeholder="Email" #message></textarea>
-      <button mat-raised-button (click)="sendMessage(message.value)">Send</button>
-</mat-toolbar>
+</div>
+<div class="wrapper">
+  <div class="message-wrapper">
+    <ul *ngIf="messagesArr" class="message-wrapper">
+      <div *ngFor="let message of messagesArr" class="message" [className]="isItMine(message) ? 'mine':'not-mine' ">
+          <div class="message-content">
+            <b>{{message.from.username}}</b> odesláno {{message.sentAt | amTimeAgo}}
+            <hr>
+            <p>{{message.message}}</p>
+          </div>
+      </div>
+    </ul>
+  </div>
+  <mat-toolbar class="input-toolbar">
+        <textarea matInput placeholder="Message" #message></textarea>
+        <button mat-raised-button (click)="sendMessage(message.value)" color="primary">Odeslat</button>
+  </mat-toolbar>
+</div>
+

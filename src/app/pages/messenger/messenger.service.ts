@@ -14,11 +14,6 @@ export class MessengerService {
     private roomSvc: RoomsService
   ) {}
 
-  sendMessage(input): Observable<IResponseWithOutput> {
-    const currentRoom = this.roomSvc.getCurrentRoom();
-    return this.http.post<IResponseWithOutput>(`http://localhost:5000/api/messages/${currentRoom._id}`, input);
-  }
-
   getAllMessages(): Observable<IResponseWithOutput> {
     const currentRoom = this.roomSvc.getCurrentRoom();
     return this.http.get<IResponseWithOutput>(`http://localhost:5000/api/messages/${currentRoom._id}`);

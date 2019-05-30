@@ -1,8 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {DialogData} from '../rooms.component';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {RoomsService} from '../rooms.service';
+import {RoomsService} from '../../rooms/rooms.service';
+import {SocketService} from '../../../helpers/services/socket.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-create-room-dialog',
@@ -14,9 +15,12 @@ export class CreateRoomDialogComponent implements OnInit {
   public form: FormGroup;
 
   constructor(
+    public socketSvc: SocketService,
     public roomSvc: RoomsService,
+    public router: Router,
     public dialogRef: MatDialogRef<CreateRoomDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData
+    @Inject(MAT_DIALOG_DATA) public data: any
+
   ) {
     this.form = new FormGroup({
       name: new FormControl(null, [Validators.required]),
@@ -35,6 +39,10 @@ export class CreateRoomDialogComponent implements OnInit {
         window.location.reload();
       }
     });
+
+    // this.socketSvc.createRoom(input);
+    // this.dialogRef.close(this.form.value);
+
   }
 
 }

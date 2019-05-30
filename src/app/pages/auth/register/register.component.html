@@ -1,44 +1,65 @@
-<mat-card>
-  <div class="container">
-    <div class="row justify-content-md-center">
-      <div class="col-md-auto">
-        <mat-card-title>Registration</mat-card-title>
-        <mat-card-content>
-          <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
-            <p>
-              <mat-form-field appearance="outline">
-                <mat-label>Name</mat-label>
-                <input matInput type="text" placeholder="Name" formControlName="name">
-              </mat-form-field>
-            </p>
-            <p>
-              <mat-form-field appearance="outline">
-                <mat-label>Username</mat-label>
-                <input matInput type="text" placeholder="Username" formControlName="username">
-              </mat-form-field>
-            </p>
-            <p>
-              <mat-form-field appearance="outline">
-                <mat-label>E-mail</mat-label>
-                <input matInput type="email" placeholder="E-mail" formControlName="email">
-              </mat-form-field>
-            </p>
-            <p>
-              <mat-form-field appearance="outline">
-                <mat-label>Password</mat-label>
-                <input matInput placeholder="Password" type="password" formControlName="password">
-              </mat-form-field>
-            </p>
-            <p>
-              <mat-form-field appearance="outline">
-                <mat-label>Confirm password</mat-label>
-                <input matInput placeholder="Placeholder" type="Confirm password" formControlName="confirmPassword">
-              </mat-form-field>
-            </p>
-            <button mat-stroked-button>Click Me</button>
-          </form>
-        </mat-card-content>
-      </div>
-    </div>
-  </div>
+<!-- Redo design -->
+<form [formGroup]="form" fxFlex="100" fxLayout="row">
+<mat-card class="register-card">
+    <mat-form-field appearance="outline">
+      <mat-label>Jméno</mat-label>
+      <input matInput type="text" placeholder="Jméno" formControlName="firstname" autofocus="autofocus" name="fname" required>
+      <mat-error *ngIf="firstname.hasError('required')">Křestní jméno je vyžadováno</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Přijmení</mat-label>
+      <input matInput type="text" placeholder="Přijmení" formControlName="surname" name="lname" required>
+      <mat-error *ngIf="surname.hasError('required')">Přijmení je vyžadováno</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Uživatelské jméno</mat-label>
+      <input matInput type="text" placeholder="Uživatelské jméno" formControlName="username" name="username" autocomplete="off" required>
+      <mat-error *ngIf="username.hasError('required')">Uživatelské jméno je vyžadováno</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" placeholder="Email" formControlName="email" name="email" required>
+      <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">Zadali jste neplatný email</mat-error>
+      <mat-error *ngIf="email.hasError('required')">Email je vyžadován</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Heslo</mat-label>
+      <input matInput type="password" placeholder="Heslo" formControlName="password" name="password" required>
+      <mat-error *ngIf="password.hasError('required')">Heslo je vyžadováno</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Potvrďte heslo</mat-label>
+      <input matInput type="password" placeholder="Povtrďte heslo" formControlName="confirmpassword" name="confirmpassword" pattern="{{ this.password.value }}" required>
+      <mat-error *ngIf="confirmpassword.hasError('pattern')"> Tyto dvě hesla se neshodují</mat-error>
+      <mat-error *ngIf="confirmpassword.hasError('required')"> Potvrzovací heslo je vyžadováno </mat-error>
+
+    </mat-form-field>
+    <button mat-raised-button (click)="onSubmit(form.value)" color="primary" class="login-button"><span style="color: white;">REGISTER</span></button>
 </mat-card>
+</form>
+
+<!--name: {type: String, required: true},-->
+<!--username: {type: String, required: true},-->
+<!--password: {-->
+<!--type: String,-->
+<!--required: true,-->
+<!--minLength: schemFields.PASSWORD.MIN_LENGTH,-->
+<!--maxLength: schemFields.PASSWORD.MAX_LENGTH,-->
+<!--validate: [validators.passwordStrength, codes.PASSWORD.WEAK.message]-->
+<!--},-->
+<!--active: {-->
+<!--type: Boolean-->
+<!--},-->
+<!--email: {-->
+<!--type: String,-->
+<!--required: true,-->
+<!--unique: true-->
+<!--},-->
+<!--friends: [friendSchema],-->
+<!--room: {-->
+<!--type: String-->
+<!--}-->

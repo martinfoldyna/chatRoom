@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   constructor(
@@ -13,6 +13,13 @@ export class AppComponent implements OnInit {
 
   }
 
+  public notificationOptions = {
+    timeOut: 3000,
+    position: ['top', 'right'],
+    theClass: 'notification-style',
+    showProgressBar: false,
+    lastOnBottom: true
+  };
   ngOnInit() {
     // this.http.get('http://localhost:5000/api/sys/routes')
     //   .toPromise()

@@ -1,0 +1,26 @@
+:host /deep/ .notification-style {
+  border-radius: 10px !important;
+  position: relative;
+}
+
+:host /deep/ .notification-style.success {
+  border-radius: 10px !important;
+  position: relative;
+  background-color: rgba(139, 195, 74, 0.74) !important;
+}
+
+html, body, app-root, .app-frame {
+  overflow: hidden;
+  margin: 0;
+  height: 100%;
+  box-sizing: border-box;
+  color: #e0e0e0;
+}
+
+button {
+  transition: opacity .5s;
+}
+
+button:hover {
+  opacity: .8;
+}

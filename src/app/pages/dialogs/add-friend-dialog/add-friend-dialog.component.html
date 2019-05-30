@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Find friend</h1>
+<div mat-dialog-content>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Username" aria-label="Username" [matAutocomplete]="auto" [formControl]="usersCtrl">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="valueMapper" (optionSelected)='onChange($event.option.value)' >
+        <mat-option *ngFor="let user of filteredUsers | async" [value]="user" >
+          <span>{{user.name}}</span>
+          <small>username: {{user.username}}</small>
+        </mat-option>
+    </mat-autocomplete>
+
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="addFriend()">Add friend</button>
+</div>

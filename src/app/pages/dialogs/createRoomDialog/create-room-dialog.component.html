@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Vytvořit komunikační místnost</h1>
+<div mat-dialog-content>
+  <p>Název místnosti</p>
+  <mat-form-field>
+    <form [formGroup]="form">
+      <input matInput formControlName="name">
+    </form>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="actions">
+  <button mat-raised-button cdkFocusInitial (click)="save(form.value)" color="primary">Vytvořit</button>
+</div>

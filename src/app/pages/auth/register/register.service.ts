@@ -10,7 +10,5 @@ import {ILoginResponse} from '../../../helpers/models/loginResponse.interface';
 export class RegisterService {
   constructor(public http: HttpClient) {}
 
-  registerRequest(credentials): Observable<ILoginResponse> {
-    return this.http.post<ILoginResponse>('http://localhost:5000/api/auth/registration', credentials);
-  }
+
 }

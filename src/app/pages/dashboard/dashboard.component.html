@@ -1,27 +1,52 @@
+<app-top-bar></app-top-bar>
 <div class="grid-container" *ngIf="roomsLoaded | async">
-  <h1 class="mat-h1">Dashboard</h1>
-  <button (click)="authSvc.logOut()" mat-raised-button>Log Out</button>
-  <mat-icon>
-    account_circle
-  </mat-icon>
-  <button mat-raised-button (click)="openDialog()" color="accent">Create a room</button>
-  <mat-grid-list cols="4" rowHeight="350px">
-    <mat-grid-tile *ngFor="let room of rooms" colspan="1" rowspan="1" (click)="tileClicked(room)">
+  <h1 class="mat-h1">Nástěnka</h1>
+  <button mat-raised-button (click)="createRoomDialog()" color="primary">Vytvořit místnost</button>
+
+
+  <mat-grid-list cols="4" rows="1" rowHeight="350px">
+    <mat-grid-tile *ngFor="let room of rooms" colspan="1" rowspan="1">
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
-            {{room.name}}
+            <h2 class="mat-h2">{{room.name}}</h2>
           </mat-card-title>
+          <div class="icon" (click)="openRoomDialog(room)">i</div>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
           <mat-list>
-            <mat-list *ngFor="let user of room.activeUsers.users">
+            <mat-list *ngFor="let user of room.activeUsers.users" class="users-list">
               <mat-list-item>
                 {{user.name}}
               </mat-list-item>
             </mat-list>
+            <div class="action-container">
+              <button mat-stroked-button color="primary" (click)="onJoinClick(room)" class="join-button">Připojit se</button>
+            </div>
           </mat-list>
         </mat-card-content>
+        <mat-card-footer></mat-card-footer>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <h1 class="mat-h1">Přátelé</h1>
+  <button mat-raised-button (click)="addFriendDialog()" color="primary">Přidat přátele</button>
+  <mat-grid-list cols="6" rows="1" rowHeight="250px">
+    <mat-grid-tile *ngFor="let friend of friendsArray" colspan="1" rowspan="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            <h2 class="mat-h2">{{friend.name}}</h2>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <p>uživatelské jméno: {{friend.username}}</p>
+          <div class="action-container">
+            <button mat-stroked-button color="warn" (click)="removeFriend(friend._id)" class="join-button">Odebrat z přátel</button>
+          </div>
+
+        </mat-card-content>
+        <mat-card-footer></mat-card-footer>
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>

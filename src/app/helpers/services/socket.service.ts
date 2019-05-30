@@ -1,5 +1,7 @@
 import * as io from 'socket.io-client';
 import {Observable} from 'rxjs';
+import {UserService} from './user.service';
+import {RoomsService} from '../../pages/rooms/rooms.service';
 
 export class SocketService {
   private url = 'http://localhost:5000';
@@ -10,38 +12,38 @@ export class SocketService {
   }
 
   joinRoom(room) {
-    this.socket.emit('userJoinRoom', room);
-    sessionStorage.setItem('connectedToRoom', room);
-  }
-
-  receivedSuccess() {
-    const observable = new Observable((observer) => {
-      this.socket.on('callSucceed', (data) => {
-        observer.next(data);
-      });
-    });
-
-    return observable;
+      const requestBody = {
+        room: room,
+        user: JSON.parse(sessionStorage.getItem('user'))
+      };
+      this.socket.emit('joinRoom', room);
   }
 
   receivedMessage() {
-    const observable = new Observable((observer) => {
-      this.socket.on('newMessage', (data) => {
+    return new Observable(observer => {
+
+      this.socket.on('receivedMessage', (data) => {
+        console.log('got-data');
+        observer.next(data);
+      })
+    })
+  }
+
+  receivedAllMessages() {
+    const observable = new Observable(observer => {
+      this.socket.on('allMessagesLoaded', data => {
         observer.next(data);
       });
     });
 
     return observable;
-
   }
 
-  receivedConnectedToRoom() {
-      const observable = new Observable(observer => {
-        this.socket.on('Room joined', (data) => {
-          observer.next(data);
-        });
-      });
+  sendMessage(message) {
+    this.socket.emit('sendMessage', message);
+  }
 
-      return observable;
-    }
+  leaveRoom(room) {
+    this.socket.emit('leaveRoom', room);
+  }
 }
